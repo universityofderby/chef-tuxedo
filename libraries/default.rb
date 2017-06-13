@@ -32,7 +32,7 @@ Chef.resource :tuxedo do
     default { node['common_artifact_repo'] + "/oracle/tuxedo/#{version}/#{installer_file}" }
   end
   property :installer_path, Path do
-    default {  ::File.join(cache_path, installer_file) }
+    default { ::File.join(cache_path, installer_file) }
   end
   property :installer_file, Path do
     default { 'tuxedo12110_64_linux_5_x86.bin' }
