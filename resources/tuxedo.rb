@@ -2,8 +2,8 @@ property :version, String, name_property: true
 property :patch, String
 property :owner, String, default: 'tuxedo'
 property :group, String, default: 'tuxedo'
-property :new_resource.password, String, default: 'luckluck'
-property :new_resource.locale, String, default: 'en'
+property :password, String, default: 'luckluck'
+property :locale, String, default: 'en'
 property :tmp_dir, String, default: '/tmp'
 property :new_resource.home, String, default: lazy { '/opt/oracle/Middleware/tuxedo-' + new_resource.version }
 property :cache_path, String, default: lazy { ::File.join(Chef::Config[:file_cache_path], "tuxedo-#{version}") }
