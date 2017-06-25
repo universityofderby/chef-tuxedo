@@ -5,15 +5,15 @@ property :group, String, default: 'tuxedo'
 property :password, String, default: 'luckluck'
 property :locale, String, default: 'en'
 property :tmp_dir, String, default: '/tmp'
-property :new_resource.home, String, default: lazy { '/opt/oracle/Middleware/tuxedo-' + new_resource.version }
+property :home, String, default: lazy { '/opt/oracle/Middleware/tuxedo-' + new_resource.version }
 property :cache_path, String, default: lazy { ::File.join(Chef::Config[:file_cache_path], "tuxedo-#{version}") }
 property :new_resource.silent_path, String, default: lazy { ::File.join(new_resource.cache_path, new_resource.silent_file) }
 property :silent_file, String, default: 'installer.properties'
 property :artifact_repo, String
 property :installer_url, String, default: lazy { new_resource.artifact_repo + "/oracle/tuxedo/#{new_resource.version}/#{new_resource.installer_file}" }
-property :new_resource.installer_path, String, default: lazy { ::File.join(new_resource.cache_path, new_resource.installer_file) }
+property :installer_path, String, default: lazy { ::File.join(new_resource.cache_path, new_resource.installer_file) }
 property :installer_file, String, default: 'tuxedo12110_64_linux_5_x86.bin'
-property :new_resource.patch_url, String, default: lazy { new_resource.artifact_repo + "/oracle/tuxedo/#{new_resource.version}/#{new_resource.patch_file}" }
+property :patch_url, String, default: lazy { new_resource.artifact_repo + "/oracle/tuxedo/#{new_resource.version}/#{new_resource.patch_file}" }
 property :patch_file, String, default: "#{new_resource.patch}.tar.Z"
 
 action :create do
