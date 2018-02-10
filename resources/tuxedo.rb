@@ -9,7 +9,7 @@ property :home, String, default: lazy { '/opt/oracle/Middleware/tuxedo-' + versi
 property :cache_path, String, default: lazy { ::File.join(Chef::Config[:file_cache_path], "tuxedo-#{version}") }
 property :silent_path, String, default: lazy { ::File.join(cache_path, silent_file) }
 property :silent_file, String, default: 'installer.properties'
-property :artifact_repo, String, required: true
+property :artifact_repo, String, default: ''
 property :installer_url, String, default: lazy { artifact_repo + "/oracle/tuxedo/#{version}/#{installer_file}" }
 property :installer_path, String, default: lazy { ::File.join(cache_path, installer_file) }
 property :installer_file, String, default: 'tuxedo12110_64_linux_5_x86.bin'
@@ -76,7 +76,7 @@ action :create do
       cwd ::File.join(new_resource.home, patch)
       user new_resource.tux_user
       group new_resource.tux_group
-      command "printf '#{new_resource.tux_user}\n#{new_resource.tux_group}\n' | TUXDIR=#{new_resource.home} ORACLE_new_resource.home=#{new_resource.home} sh install"
+      command "printf '#{new_resource.tux_user}\n#{new_resource.tux_group}\n' | TUXDIR=#{new_resource.home} ORACLE_HOME=#{new_resource.home} sh install"
       not_if { ::File.exist?(::File.join(new_resource.home, "uninstaller_#{patch}")) }
     end
   end
